@@ -7,6 +7,7 @@ using System;
 public class collector : MonoBehaviour
 {
     int kebabs = 0;
+    int targets = 0;
     [SerializeField] Text kebabstext;
     [SerializeField] AudioSource collectionsound;
     [SerializeField] GameObject skibidi;
@@ -19,7 +20,12 @@ public class collector : MonoBehaviour
     [SerializeField] GameObject pig4;
     [SerializeField] GameObject pig5;
     [SerializeField] GameObject neswip;
+    [SerializeField] GameObject genji;
+    [SerializeField] Camera genjicam;
     [SerializeField] AudioSource finish;
+    [SerializeField] AudioSource genjistart;
+    //[SerializeField] AudioSource genjikill;
+    //[SerializeField] AudioSource genjifinish;
     [SerializeField] GameObject podvaldoor;
     private void Start()
     {
@@ -33,6 +39,7 @@ public class collector : MonoBehaviour
         pig4.SetActive(false);
         pig5.SetActive(false);
         neswip.SetActive(false);
+        genji.SetActive(false);
     }
 
     IEnumerator stop()
@@ -91,6 +98,21 @@ public class collector : MonoBehaviour
         {
             skibidi.SetActive(true);
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("dragonblade"))
+        {
+            Destroy(other.gameObject);
+            genji.SetActive(true);
+            genjistart.Play();
+        }
+        if (other.gameObject.CompareTag("genjitarget"))
+        {
+            Destroy(other.gameObject);
+            targets++;
+            if (targets == 4)
+            {
+                genjicam.enabled = false;
+            }
         }
     }
 }

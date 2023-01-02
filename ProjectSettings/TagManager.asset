@@ -6,6 +6,8 @@ TagManager:
   tags:
   - kebab
   - skibiditrig
+  - dragonblade
+  - genjitarget
   layers:
   - Default
   - TransparentFX
