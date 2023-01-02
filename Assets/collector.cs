@@ -13,7 +13,6 @@ public class collector : MonoBehaviour
     [SerializeField] GameObject holodno;
     [SerializeField] GameObject brply;
     [SerializeField] GameObject muda;
-    [SerializeField] GameObject dobdob;
     [SerializeField] GameObject pig1;
     [SerializeField] GameObject pig2;
     [SerializeField] GameObject pig3;
@@ -21,11 +20,11 @@ public class collector : MonoBehaviour
     [SerializeField] GameObject pig5;
     [SerializeField] GameObject neswip;
     [SerializeField] AudioSource finish;
+    [SerializeField] GameObject podvaldoor;
     private void Start()
     {
         skibidi.SetActive(false);
         muda.SetActive(false);
-        dobdob.SetActive(false);
         holodno.SetActive(false);
         brply.SetActive(false);
         pig1.SetActive(false);
@@ -40,8 +39,7 @@ public class collector : MonoBehaviour
     {
         finish.Play();
         yield return new WaitForSeconds(1);
-        System.Random rnd = new System.Random();
-        Application.Quit(rnd.Next() * -1);
+        Application.Quit(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +51,10 @@ public class collector : MonoBehaviour
             Debug.Log($"Kebabs: {kebabs}");
             kebabstext.text = $"Собрано кебабов: {kebabs}/10";
             collectionsound.Play();
-
+            if (other.gameObject.name == "kebab (6)")
+            {
+                podvaldoor.SetActive(false);
+            }
             if(other.gameObject.name == "kebab (4)")
             {
                 holodno.SetActive(true);

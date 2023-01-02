@@ -21,7 +21,7 @@ public class follow : MonoBehaviour
         float distance = Vector3.Distance(target.transform.position, transform.position);
         if (distance > 5)
         {
-            transform.position += direction * Time.deltaTime * 1f;
+            transform.position += direction * Time.deltaTime * 0.5f;
         }
         //nav.SetDestination(target.position);
     }
