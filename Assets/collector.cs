@@ -103,7 +103,7 @@ public class collector : MonoBehaviour
         {
             Destroy(other.gameObject);
             genji.SetActive(true);
-            genjistart.Play();
+            //genjistart.Play();
         }
         if (other.gameObject.CompareTag("genjitarget"))
         {
