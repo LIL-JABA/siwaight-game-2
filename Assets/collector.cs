@@ -27,6 +27,8 @@ public class collector : MonoBehaviour
     //[SerializeField] AudioSource genjikill;
     //[SerializeField] AudioSource genjifinish;
     [SerializeField] GameObject podvaldoor;
+    [SerializeField] GameObject bigroadhog;
+    [SerializeField] AudioSource roadhog_laugh;
     private void Start()
     {
         skibidi.SetActive(false);
@@ -40,6 +42,7 @@ public class collector : MonoBehaviour
         pig5.SetActive(false);
         neswip.SetActive(false);
         genji.SetActive(false);
+        bigroadhog.SetActive(false);
     }
 
     IEnumerator stop()
@@ -56,7 +59,8 @@ public class collector : MonoBehaviour
             Destroy(other.gameObject);
             kebabs++;
             Debug.Log($"Kebabs: {kebabs}");
-            kebabstext.text = $"Собрано кебабов: {kebabs}/10";
+            kebabstext.text = $"Собрано кебабов: {kebabs}/13";
+
             collectionsound.Play();
             if (other.gameObject.name == "kebab (6)")
             {
@@ -88,7 +92,7 @@ public class collector : MonoBehaviour
             }
 
 
-            if (kebabs == 10)
+            if (kebabs == 13)
             {
                 StartCoroutine(stop());
             }
@@ -113,6 +117,12 @@ public class collector : MonoBehaviour
             {
                 genjicam.enabled = false;
             }
+        }
+        if (other.gameObject.CompareTag("hogtriger"))
+        {
+            Destroy(other.gameObject);
+            bigroadhog.SetActive(true);
+            roadhog_laugh.Play();
         }
     }
 }

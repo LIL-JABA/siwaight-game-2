@@ -8,6 +8,7 @@ TagManager:
   - skibiditrig
   - dragonblade
   - genjitarget
+  - hogtriger
   layers:
   - Default
   - TransparentFX
