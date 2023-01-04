@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\follow.cs" />
      <Compile Include="Assets\Scripts\movement.cs" />
      <Compile Include="Assets\Scripts\rotate.cs" />
+     <None Include="Assets\BrokenVector\LowPolyTreePack\README.txt" />
      <None Include="Assets\models\FantasyEnvironments\Environments\README.txt" />
      <None Include="Assets\models\VertexColorFarmAnimals\Shaders\VertexColorUnlit.shader" />
  <Reference Include="UnityEngine">
