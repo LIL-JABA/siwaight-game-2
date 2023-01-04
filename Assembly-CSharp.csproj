@@ -55,12 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\camera.cs" />
-     <Compile Include="Assets\collector.cs" />
-     <Compile Include="Assets\cowmovement.cs" />
-     <Compile Include="Assets\follow.cs" />
-     <Compile Include="Assets\movement.cs" />
-     <Compile Include="Assets\rotate.cs" />
+     <Compile Include="Assets\Scripts\camera.cs" />
+     <Compile Include="Assets\Scripts\collector.cs" />
+     <Compile Include="Assets\Scripts\cowmovement.cs" />
+     <Compile Include="Assets\Scripts\follow.cs" />
+     <Compile Include="Assets\Scripts\movement.cs" />
+     <Compile Include="Assets\Scripts\rotate.cs" />
      <None Include="Assets\models\FantasyEnvironments\Environments\README.txt" />
      <None Include="Assets\models\VertexColorFarmAnimals\Shaders\VertexColorUnlit.shader" />
  <Reference Include="UnityEngine">
