@@ -10,6 +10,7 @@ public class collector : MonoBehaviour
     int targets = 0;
     [SerializeField] AudioSource start_sound;
     [SerializeField] GameObject player_model;
+    [SerializeField] GameObject hog_player;
     [SerializeField] Text kebabstext;
     [SerializeField] AudioSource collectionsound;
     [SerializeField] GameObject skibidi;
@@ -31,6 +32,7 @@ public class collector : MonoBehaviour
     [SerializeField] AudioSource roadhog_laugh;
     private void Start()
     {
+        hog_player.SetActive(false);
         start_sound.Play();
         skibidi.SetActive(false);
         muda.SetActive(false);
