@@ -94,6 +94,12 @@ public class collector : MonoBehaviour
                 neswip.SetActive(true);
             }
 
+            if (other.gameObject.name == "kebab (1)")
+            {
+                player_model.SetActive(false);
+                genji.SetActive(false);
+                hog_player.SetActive(true);
+            }
 
             if (kebabs == 13)
             {
