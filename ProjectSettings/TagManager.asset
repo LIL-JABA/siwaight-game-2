@@ -5,6 +5,21 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - dragonblade
+  - skibiditrig
+  - hogtriger
+  - kebab
+  - genjitarget
+  - followhog
+  - followpig
+  - flyingpigs
+  - skibidiplay
+  - holodnoplay
+  - brplyplay
+  - mudaplay
+  - neswipplay
+  - podvaldoor
+  - bigroadhog
   layers:
   - Default
   - TransparentFX

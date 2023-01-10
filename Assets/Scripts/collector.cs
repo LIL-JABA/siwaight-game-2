@@ -6,46 +6,45 @@ using System;
 
 public class collector : MonoBehaviour
 {
-    int kebabs = 0;
     int targets = 0;
-    [SerializeField] AudioSource start_sound;
     [SerializeField] GameObject player_model;
     [SerializeField] GameObject hog_player;
-    [SerializeField] Text kebabstext;
-    [SerializeField] AudioSource collectionsound;
-    [SerializeField] GameObject skibidi;
-    [SerializeField] GameObject holodno;
-    [SerializeField] GameObject brply;
-    [SerializeField] GameObject muda;
-    [SerializeField] GameObject pig1;
-    [SerializeField] GameObject pig2;
-    [SerializeField] GameObject pig3;
-    [SerializeField] GameObject pig4;
-    [SerializeField] GameObject pig5;
-    [SerializeField] GameObject neswip;
     [SerializeField] GameObject genji;
+
+    [SerializeField] Text kebabstext;
+
+    [SerializeField] AudioSource collectionsound;
     [SerializeField] AudioSource finish;
-    //[SerializeField] AudioSource genjikill;
-    //[SerializeField] AudioSource genjifinish;
-    [SerializeField] GameObject podvaldoor;
-    [SerializeField] GameObject bigroadhog;
+    [SerializeField] AudioSource start_sound;
     [SerializeField] AudioSource roadhog_laugh;
+
+    GameObject followpig, flyingpigs, skibidi, holodno, brply, muda, neswip, podvaldoor, bigroadhog;
+
     private void Start()
     {
+        kebabstext.text = $"Собрано кебабов: {GlobalVarStorage.kebabs}/{GlobalVarStorage.maxKebabs}";
+
+        followpig = getobj("followpig");
+        flyingpigs = getobj("flyingpigs");
+        skibidi = getobj("skibidiplay");
+        holodno = getobj("holodnoplay");
+        brply = getobj("brplyplay");
+        muda = getobj("mudaplay");
+        neswip = getobj("neswipplay");
+        podvaldoor = getobj("podvaldoor");
+        bigroadhog = getobj("bigroadhog");
+
         hog_player.SetActive(false);
         start_sound.Play();
         skibidi.SetActive(false);
         muda.SetActive(false);
         holodno.SetActive(false);
         brply.SetActive(false);
-        pig1.SetActive(false);
-        pig2.SetActive(false);
-        pig3.SetActive(false);
-        pig4.SetActive(false);
-        pig5.SetActive(false);
+        flyingpigs.SetActive(false);
         neswip.SetActive(false);
         genji.SetActive(false);
         bigroadhog.SetActive(false);
+        followpig.SetActive(false);
     }
 
     IEnumerator stop()
@@ -60,9 +59,10 @@ public class collector : MonoBehaviour
         if (other.gameObject.CompareTag("kebab"))
         {
             Destroy(other.gameObject);
-            kebabs++;
+            GlobalVarStorage.kebabs++;
+            int kebabs = GlobalVarStorage.kebabs;
             Debug.Log($"Kebabs: {kebabs}");
-            kebabstext.text = $"Собрано кебабов: {kebabs}/13";
+            kebabstext.text = $"Собрано кебабов: {kebabs}/{GlobalVarStorage.maxKebabs}";
 
             collectionsound.Play();
             if (other.gameObject.name == "kebab (6)")
@@ -83,25 +83,23 @@ public class collector : MonoBehaviour
             }
             if (other.gameObject.name == "kebab (2)")
             {
-                pig1.SetActive(true);
-                pig2.SetActive(true);
-                pig3.SetActive(true);
-                pig4.SetActive(true);
-                pig5.SetActive(true);
+                flyingpigs.SetActive(true);
             }
             if (other.gameObject.name == "kebab (7)")
             {
                 neswip.SetActive(true);
             }
 
-            if (other.gameObject.name == "kebab (1)")
+            if (other.gameObject.name == "kebab (1)") // swap hog and pig
             {
-                player_model.SetActive(false);
-                genji.SetActive(false);
+                Destroy(player_model);
+                //genji.SetActive(false);
                 hog_player.SetActive(true);
+                Destroy(GameObject.FindWithTag("followhog"));
+                followpig.SetActive(true);
             }
 
-            if (kebabs == 13)
+            if (kebabs == GlobalVarStorage.maxKebabs)
             {
                 StartCoroutine(stop());
             }
@@ -136,5 +134,9 @@ public class collector : MonoBehaviour
             bigroadhog.SetActive(true);
             roadhog_laugh.Play();
         }
+    }
+    private GameObject getobj(string tag)
+    {
+        return GameObject.FindWithTag(tag);
     }
 }
