@@ -34,6 +34,10 @@ public class collector : MonoBehaviour
         podvaldoor = getobj("podvaldoor");
         bigroadhog = getobj("bigroadhog");
 
+        if (skibidi != null)
+        {
+            skibidi.SetActive(false);
+        }
         hog_player.SetActive(false);
         start_sound.Play();
         skibidi.SetActive(false);
