@@ -34,21 +34,14 @@ public class collector : MonoBehaviour
         podvaldoor = getobj("podvaldoor");
         bigroadhog = getobj("bigroadhog");
 
-        if (skibidi != null)
+        List<GameObject> gameobjects = new List<GameObject>() { followpig, flyingpigs, skibidi, 
+            holodno, brply, muda, neswip, podvaldoor, bigroadhog, genji, hog_player };
+
+        foreach (GameObject obj in gameobjects)
         {
-            skibidi.SetActive(false);
+            if (obj != null && this.gameObject.name == "player") obj.SetActive(false);
         }
-        hog_player.SetActive(false);
         start_sound.Play();
-        skibidi.SetActive(false);
-        muda.SetActive(false);
-        holodno.SetActive(false);
-        brply.SetActive(false);
-        flyingpigs.SetActive(false);
-        neswip.SetActive(false);
-        genji.SetActive(false);
-        bigroadhog.SetActive(false);
-        followpig.SetActive(false);
     }
 
     IEnumerator stop()
@@ -69,10 +62,6 @@ public class collector : MonoBehaviour
             kebabstext.text = $"Собрано кебабов: {kebabs}/{GlobalVarStorage.maxKebabs}";
 
             collectionsound.Play();
-            if (other.gameObject.name == "kebab (6)")
-            {
-                podvaldoor.SetActive(false);
-            }
             if(other.gameObject.name == "kebab (4)")
             {
                 holodno.SetActive(true);
@@ -97,7 +86,6 @@ public class collector : MonoBehaviour
             if (other.gameObject.name == "kebab (1)") // swap hog and pig
             {
                 Destroy(player_model);
-                //genji.SetActive(false);
                 hog_player.SetActive(true);
                 Destroy(GameObject.FindWithTag("followhog"));
                 followpig.SetActive(true);
@@ -117,7 +105,7 @@ public class collector : MonoBehaviour
         if (other.gameObject.CompareTag("dragonblade"))
         {
             Destroy(other.gameObject);
-            player_model.SetActive(false);
+            this.gameObject.SetActive(false);
             start_sound.Play();
             genji.SetActive(true);
             //genjistart.Play();
@@ -128,7 +116,15 @@ public class collector : MonoBehaviour
             targets++;
             if (targets == 4)
             {
-                player_model.SetActive(true);
+                if(player_model != null)
+                {
+                    player_model.SetActive(true);
+                }
+                else
+                {
+                    hog_player.SetActive(true);
+                }
+                
                 genji.SetActive(false);
             }
         }

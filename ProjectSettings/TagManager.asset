@@ -20,6 +20,7 @@ TagManager:
   - neswipplay
   - podvaldoor
   - bigroadhog
+  - genjiplayer
   layers:
   - Default
   - TransparentFX
